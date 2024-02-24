@@ -1,13 +1,21 @@
 package at.technikumwien.menu;
 
-import org.springframework.boot.SpringApplication;
+import at.technikumwien.interfaces.CustomTranslator;
+import at.technikumwien.services.DeeplTranslator;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class MenuApplication {
 
+	private static final CustomTranslator translator = DeeplTranslator.getInstance();
+
 	public static void main(String[] args) {
-		SpringApplication.run(MenuApplication.class, args);
+		// SpringApplication.run(MenuApplication.class, args);
+		try {
+			System.out.println(translator.translate("Hello, World!", null, "DE"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
