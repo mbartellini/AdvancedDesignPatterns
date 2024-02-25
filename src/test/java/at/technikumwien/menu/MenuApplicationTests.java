@@ -1,8 +1,9 @@
 package at.technikumwien.menu;
 
-import at.technikumwien.interfaces.CustomTranslator;
-import at.technikumwien.services.DeeplTranslator;
+import at.technikumwien.menu.interfaces.CustomTranslator;
+import at.technikumwien.menu.services.DeeplTranslator;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -10,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 @SpringBootTest
 class MenuApplicationTests {
 
-	private final CustomTranslator translator = DeeplTranslator.getInstance();
+	@Autowired
+	private CustomTranslator translator;
 
 	@Test
 	void contextLoads() {

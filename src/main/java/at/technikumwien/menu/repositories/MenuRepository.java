@@ -1,10 +1,12 @@
 package at.technikumwien.menu.repositories;
 
 import at.technikumwien.menu.objects.Menu;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class MenuRepository {
 
     private static MenuRepository singleton;

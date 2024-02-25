@@ -1,6 +1,6 @@
-package at.technikumwien.services;
+package at.technikumwien.menu.services;
 
-import at.technikumwien.interfaces.CustomTranslator;
+import at.technikumwien.menu.interfaces.CustomTranslator;
 
 public class GoogleTranslator implements CustomTranslator {
 
