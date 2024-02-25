@@ -11,4 +11,20 @@ public class Dish {
         this.cost = cost;
         this.currency = currency;
     }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
 }

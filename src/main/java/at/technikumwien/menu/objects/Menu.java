@@ -14,14 +14,14 @@ public class Menu {
         this.language = language;
     }
 
-    public void setId(int id) throws Exception {
+    public void setId(Integer id) throws Exception {
         if(this.id != null) {
             throw new Exception("Id is already set can not overwrite it");
         }
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
