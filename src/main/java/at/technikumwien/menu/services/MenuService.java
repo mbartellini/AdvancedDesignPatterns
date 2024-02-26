@@ -32,12 +32,10 @@ public class MenuService {
                 .stream()
                 .map(df -> createDish(df, menuForm.getOriginalLanguage(), menuForm.getPreferredLanguage()))
                 .collect(Collectors.toList());
-        System.out.println("Menu 1");
         Menu menu = Menu.builder()
                 .addDishes(newDishes)
                 .setLanguage(menuForm.getPreferredLanguage())
                 .build();
-        System.out.println("Menu 2");
         menuRepository.save(menu);
         return menu;
     }
