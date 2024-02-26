@@ -1,5 +1,8 @@
 # Setup
 
+![image](https://github.com/mbartellini/AdvancedDesignPatterns/assets/67906197/603e54b0-10c8-4c28-9fbe-2bb9ca21851a)
+
+
 # Brief description
 This application addresses the challenge of managing a restaurant where support for many languages may be necessary. It allows users to view a menu consisting of various dishes and select their preferred language for translation. With integration for translation platforms, owners can translate the menu into a variety of languages.
 
