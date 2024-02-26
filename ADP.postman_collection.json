@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "200d7b43-1a21-4a64-936d-21cd78aeb076",
+		"name": "ADP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25497274",
+		"_collection_link": "https://dark-star-833892.postman.co/workspace/UASTW~5e35a24a-609e-4de3-b2bd-a366840009e3/collection/25497274-200d7b43-1a21-4a64-936d-21cd78aeb076?action=share&source=collection_link&creator=25497274"
+	},
+	"item": [
+		{
+			"name": "menues",
+			"item": [
+				{
+					"name": "localhost:8080/menues",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dishes\": [\n        {\n            \"name\": \"french fries\",\n            \"cost\": 1.99,\n            \"currency\": \"EUR\"\n        }\n    ],\n    \"originalLanguage\": \"EN\",\n    \"preferredLanguage\": \"DE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/menues"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8080/menues/0"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
