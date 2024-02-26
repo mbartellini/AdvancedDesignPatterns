@@ -1,7 +1,10 @@
-# Setup
-
 ![image](https://github.com/mbartellini/AdvancedDesignPatterns/assets/67906197/603e54b0-10c8-4c28-9fbe-2bb9ca21851a)
 
+# Setup
+This project runs with a spring boot plugin for maven. First of all, an `application.properties` file is needed inside the resources directory. This should have an `authKey` property with an appropriate DeepL API key. Then, the project can be run with `./mvnw spring-boot:run` or with the according plugin in your IDE.
+The API exposes 2 endpoints:
+1. POST to `localhost:8080/menues`: which expects a menu with preferred and origin languages, a list of dishes (each with its own currency, price and description). For the correct format, please refer to the postman collection.
+2. GET to `localhost:8080/menues/{id}`: it returns a previously created menu, in the preferred language specified.
 
 # Brief description
 This application addresses the challenge of managing a restaurant where support for many languages may be necessary. It allows users to view a menu consisting of various dishes and select their preferred language for translation. With integration for translation platforms, owners can translate the menu into a variety of languages.
