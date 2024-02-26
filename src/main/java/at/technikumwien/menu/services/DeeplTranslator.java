@@ -14,9 +14,7 @@ public class DeeplTranslator implements CustomTranslator {
     private String authKey;
     private Translator translator;
 
-    private DeeplTranslator() {
-    }
-
+    @Override
     public String translate(String text, String sourceLang, String targetLang) {
         if (translator == null)
             translator = new Translator(authKey);
