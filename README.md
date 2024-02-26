@@ -1,3 +1,7 @@
+# Authors
+Juan Martin Barmasch <br>
+Mateo Bartellini Huapala  <br>
+Balint Taschner-Berenguer  <br>
 
 # Setup
 This project runs with a spring boot plugin for maven. First of all, an `application.properties` file is needed inside the resources directory. This should have an `authKey` property with an appropriate DeepL API key. Then, the project can be run with `./mvnw spring-boot:run` or with the according plugin in your IDE.
