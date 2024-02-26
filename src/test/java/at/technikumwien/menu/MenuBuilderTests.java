@@ -17,7 +17,7 @@ public class MenuBuilderTests {
         String language = "Eng";
         DummyGenerator generator = new DummyGenerator();
         Menu menu = new MenuBuilder()
-                .setDishes(generator.generateEnglishDishes(dishesSize))
+                .addDishes(generator.generateEnglishDishes(dishesSize))
                 .setLanguage(language)
                 .build();
 
