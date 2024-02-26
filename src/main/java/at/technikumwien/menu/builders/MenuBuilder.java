@@ -3,10 +3,11 @@ package at.technikumwien.menu.builders;
 import at.technikumwien.menu.objects.Dish;
 import at.technikumwien.menu.objects.Menu;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenuBuilder {
-    List<Dish> dishes;
+    List<Dish> dishes = new ArrayList<>();
     String language;
     public Menu build() {
         return new Menu(dishes, language);
