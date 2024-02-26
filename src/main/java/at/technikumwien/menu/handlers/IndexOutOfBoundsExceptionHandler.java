@@ -18,7 +18,7 @@ public class IndexOutOfBoundsExceptionHandler extends MenuExceptionHandler {
     }
 
     @Override
-    public ResponseEntity<Object> handleException(Exception ex) {
+    public ResponseEntity<Object> handleException(Exception ex) throws Exception {
         if (ex instanceof IndexOutOfBoundsException) {
             return new ResponseEntity<>("Index out of bounds", HttpStatus.BAD_REQUEST);
         } else if (successor != null) {

@@ -19,7 +19,7 @@ public class UnableToTranslateExceptionHandler  extends MenuExceptionHandler {
     }
 
     @Override
-    public ResponseEntity<Object> handleException(Exception ex) {
+    public ResponseEntity<Object> handleException(Exception ex) throws Exception {
         if (ex instanceof UnableToTranslateException) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         } else if (successor != null) {

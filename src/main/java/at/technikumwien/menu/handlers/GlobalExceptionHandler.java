@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
             Exception.class,
             RuntimeException.class
     })
-    public ResponseEntity<Object> handleException(Exception ex) {
+    public ResponseEntity<Object> handleException(Exception ex) throws Exception {
         return chainOfResponsibility.handleException(ex);
     }
 }
