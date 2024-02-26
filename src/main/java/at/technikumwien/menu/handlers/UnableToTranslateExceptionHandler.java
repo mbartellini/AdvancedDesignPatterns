@@ -6,6 +6,18 @@ import org.springframework.http.ResponseEntity;
 
 public class UnableToTranslateExceptionHandler  extends MenuExceptionHandler {
 
+    private static UnableToTranslateExceptionHandler instance;
+
+    private UnableToTranslateExceptionHandler() {
+
+    }
+
+    public static UnableToTranslateExceptionHandler getInstance() {
+        if (instance == null)
+            instance = new UnableToTranslateExceptionHandler();
+        return instance;
+    }
+
     @Override
     public ResponseEntity<Object> handleException(Exception ex) {
         if (ex instanceof UnableToTranslateException) {

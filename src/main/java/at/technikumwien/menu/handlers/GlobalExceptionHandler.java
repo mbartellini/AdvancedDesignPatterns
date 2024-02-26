@@ -10,9 +10,9 @@ public class GlobalExceptionHandler {
     private final MenuExceptionHandler chainOfResponsibility;
 
     public GlobalExceptionHandler() {
-        MenuExceptionHandler first = new IndexOutOfBoundsExceptionHandler();
-        MenuExceptionHandler second = new UnableToTranslateExceptionHandler();
-        MenuExceptionHandler last = new BasicExceptionHandler();
+        MenuExceptionHandler first = IndexOutOfBoundsExceptionHandler.getInstance();
+        MenuExceptionHandler second =UnableToTranslateExceptionHandler.getInstance();
+        MenuExceptionHandler last = BasicExceptionHandler.getInstance();
         first.setSuccessor(second);
         second.setSuccessor(last);
         chainOfResponsibility = first;
