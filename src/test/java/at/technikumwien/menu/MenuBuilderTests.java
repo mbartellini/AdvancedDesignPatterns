@@ -19,7 +19,7 @@ public class MenuBuilderTests {
         Menu menu = new MenuBuilder()
                 .setDishes(generator.generateEnglishDishes(dishesSize))
                 .setLanguage(language)
-                .builder();
+                .build();
 
         assertDoesNotThrow(() -> {
             try {

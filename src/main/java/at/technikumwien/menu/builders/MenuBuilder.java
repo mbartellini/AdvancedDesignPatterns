@@ -8,12 +8,12 @@ import java.util.List;
 public class MenuBuilder {
     List<Dish> dishes;
     String language;
-    public Menu builder() {
+    public Menu build() {
         return new Menu(dishes, language);
     }
 
-    public MenuBuilder setDishes(List<Dish> dishes) {
-        this.dishes = dishes;
+    public MenuBuilder addDishes(List<Dish> dishes) {
+        this.dishes.addAll(dishes);
         return this;
     }
 

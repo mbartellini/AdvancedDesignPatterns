@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MenuService {
@@ -34,7 +35,24 @@ public class MenuService {
     }
 
     public Menu createMenu(MenuForm menuForm) throws Exception {
-        MenuBuilder menuBuilder = new MenuBuilder();
+//        List<Dish> newDishes = new ArrayList<>();
+//        for (int i = 0; i < menuForm.getDishes().size(); i++) {
+//            DishForm dishForm = menuForm.getDishes().get(i);
+//            Dish newDish = createDish(dishForm, menuForm.getOriginalLanguage(), menuForm.getPreferredLanguage());
+//            newDishes.add(newDish);
+//        }
+        List<Dish> newDishes = menuForm.getDishes().stream().map(df -> {
+            try {
+                return createDish(df, menuForm.getOriginalLanguage(), menuForm.getPreferredLanguage());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }).collect(Collectors.toList());
+        Menu menu = Menu.builder()
+                .addDishes(newDishes)
+                .setLanguage(menuForm.getPreferredLanguage())
+                .build();
+        /* MenuBuilder menuBuilder = Menu.builder();
         menuBuilder.setLanguage(menuForm.getPreferredLanguage());
         List<Dish> newDishes = new ArrayList<>();
         for (int i = 0; i < menuForm.getDishes().size(); i++) {
@@ -43,7 +61,7 @@ public class MenuService {
             newDishes.add(newDish);
         }
         menuBuilder.setDishes(newDishes);
-        Menu menu = menuBuilder.builder();
+        Menu menu = menuBuilder.build();*/
         menuRepository.save(menu);
         return menu;
     }

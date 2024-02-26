@@ -27,8 +27,8 @@ public class DummyGenerator {
 
     public Menu generateEnglishMenu() {
         return new MenuBuilder()
-                .setDishes(generateEnglishDishes(5))
+                .addDishes(generateEnglishDishes(5))
                 .setLanguage("Eng")
-                .builder();
+                .build();
     }
 }

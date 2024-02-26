@@ -1,6 +1,8 @@
 package at.technikumwien.menu.objects;
 
 
+import at.technikumwien.menu.builders.MenuBuilder;
+
 import java.util.List;
 
 public class Menu {
@@ -12,6 +14,10 @@ public class Menu {
     public Menu(List<Dish> dishes, String language) {
         this.dishes = dishes;
         this.language = language;
+    }
+
+    public static MenuBuilder builder() {
+        return new MenuBuilder();
     }
 
     public void setId(Integer id) throws Exception {
