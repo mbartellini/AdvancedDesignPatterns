@@ -1,7 +1,6 @@
 package at.technikumwien.menu;
 
 import at.technikumwien.menu.interfaces.CustomTranslator;
-import at.technikumwien.menu.services.DeeplTranslator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

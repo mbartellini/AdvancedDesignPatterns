@@ -22,25 +22,11 @@ public class MenuService {
     @Autowired
     private CustomTranslator translator;
 
-    private static MenuService singleton;
-
     private MenuService(){
 
     }
 
-    public static MenuService getInstance() {
-        if (singleton == null)
-            singleton = new MenuService();
-        return singleton;
-    }
-
     public Menu createMenu(MenuForm menuForm) throws Exception {
-//        List<Dish> newDishes = new ArrayList<>();
-//        for (int i = 0; i < menuForm.getDishes().size(); i++) {
-//            DishForm dishForm = menuForm.getDishes().get(i);
-//            Dish newDish = createDish(dishForm, menuForm.getOriginalLanguage(), menuForm.getPreferredLanguage());
-//            newDishes.add(newDish);
-//        }
         List<Dish> newDishes = menuForm.getDishes().stream().map(df -> {
             try {
                 return createDish(df, menuForm.getOriginalLanguage(), menuForm.getPreferredLanguage());
@@ -52,16 +38,6 @@ public class MenuService {
                 .addDishes(newDishes)
                 .setLanguage(menuForm.getPreferredLanguage())
                 .build();
-        /* MenuBuilder menuBuilder = Menu.builder();
-        menuBuilder.setLanguage(menuForm.getPreferredLanguage());
-        List<Dish> newDishes = new ArrayList<>();
-        for (int i = 0; i < menuForm.getDishes().size(); i++) {
-            DishForm dishForm = menuForm.getDishes().get(i);
-            Dish newDish = createDish(dishForm, menuForm.getOriginalLanguage(), menuForm.getPreferredLanguage());
-            newDishes.add(newDish);
-        }
-        menuBuilder.setDishes(newDishes);
-        Menu menu = menuBuilder.build();*/
         menuRepository.save(menu);
         return menu;
     }

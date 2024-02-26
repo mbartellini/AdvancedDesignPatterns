@@ -11,18 +11,9 @@ public class DeeplTranslator implements CustomTranslator {
 
     @Value("${authKey}")
     private String authKey;
-
-    private static DeeplTranslator instance;
     private Translator translator;
 
     private DeeplTranslator() {
-    }
-
-    public static DeeplTranslator getInstance() {
-        if (instance == null) {
-            instance = new DeeplTranslator();
-        }
-        return instance;
     }
 
     public String translate(String text, String sourceLang, String targetLang) throws Exception {
