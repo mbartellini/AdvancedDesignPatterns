@@ -1,4 +1,4 @@
-package at.technikumwien.menu;
+package at.technikumwien.menu.exceptions;
 
 public class UnableToTranslateException extends RuntimeException {
 

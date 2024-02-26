@@ -1,8 +1,7 @@
 package at.technikumwien.menu.services;
 
-import at.technikumwien.menu.UnableToTranslateException;
+import at.technikumwien.menu.exceptions.UnableToTranslateException;
 import at.technikumwien.menu.interfaces.CustomTranslator;
-import com.deepl.api.DeepLException;
 import com.deepl.api.TextResult;
 import com.deepl.api.Translator;
 import org.springframework.beans.factory.annotation.Value;
