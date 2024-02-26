@@ -26,23 +26,23 @@ public class MenuService {
 
     }
 
-    public Menu createMenu(MenuForm menuForm) throws Exception {
-        List<Dish> newDishes = menuForm.getDishes().stream().map(df -> {
-            try {
-                return createDish(df, menuForm.getOriginalLanguage(), menuForm.getPreferredLanguage());
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }).collect(Collectors.toList());
+    public Menu createMenu(MenuForm menuForm) {
+        List<Dish> newDishes = menuForm
+                .getDishes()
+                .stream()
+                .map(df -> createDish(df, menuForm.getOriginalLanguage(), menuForm.getPreferredLanguage()))
+                .collect(Collectors.toList());
+        System.out.println("Menu 1");
         Menu menu = Menu.builder()
                 .addDishes(newDishes)
                 .setLanguage(menuForm.getPreferredLanguage())
                 .build();
+        System.out.println("Menu 2");
         menuRepository.save(menu);
         return menu;
     }
 
-    private Dish createDish(DishForm dishForm, String fromLanguage, String toLanguage) throws Exception {
+    private Dish createDish(DishForm dishForm, String fromLanguage, String toLanguage) {
         String dishNameTranslated = translator.translate(dishForm.getName(), fromLanguage, toLanguage);
         return new Dish(0, dishNameTranslated, dishForm.getCost(), dishForm.getCurrency());
     }
