@@ -20,8 +20,7 @@ public class MenuService {
     @Autowired
     private CustomTranslator translator;
 
-    private MenuService(){
-
+    private MenuService() {
     }
 
     public Menu createMenu(MenuForm menuForm) {
