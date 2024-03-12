@@ -5,6 +5,7 @@ import at.technikumwien.menu.forms.MenuForm;
 import at.technikumwien.menu.objects.Menu;
 import at.technikumwien.menu.services.MenuService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,6 +24,7 @@ public class MenuController {
 	private MenuService menuService;
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	@TimeLimiter(name = "translationTimeout")
 	public int createMenu(@RequestBody MenuForm menuForm) throws Exception {
 		return menuService.createMenu(menuForm).getId();
 	}

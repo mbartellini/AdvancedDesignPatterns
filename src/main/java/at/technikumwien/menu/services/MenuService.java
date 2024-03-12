@@ -38,6 +38,10 @@ public class MenuService {
     }
 
     private Dish createDish(DishForm dishForm, String fromLanguage, String toLanguage) {
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException ignore) {
+        }
         String dishNameTranslated = translator.translate(dishForm.getName(), fromLanguage, toLanguage);
         return new Dish(0, dishNameTranslated, dishForm.getCost(), dishForm.getCurrency());
     }
