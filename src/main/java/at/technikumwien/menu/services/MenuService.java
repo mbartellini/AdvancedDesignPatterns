@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 @Service
 public class MenuService {
 
+    private static boolean timeout = false;
+
     @Autowired
     private MenuRepository menuRepository;
     @Autowired
@@ -24,6 +26,13 @@ public class MenuService {
     }
 
     public Menu createMenu(MenuForm menuForm) {
+        if (timeout) {
+            try {
+                Thread.sleep(15000);
+            } catch (InterruptedException ignore) {
+            }
+        }
+        timeout = !timeout;
         List<Dish> newDishes = menuForm
                 .getDishes()
                 .stream()
@@ -38,10 +47,6 @@ public class MenuService {
     }
 
     private Dish createDish(DishForm dishForm, String fromLanguage, String toLanguage) {
-        try {
-            Thread.sleep(15000);
-        } catch (InterruptedException ignore) {
-        }
         String dishNameTranslated = translator.translate(dishForm.getName(), fromLanguage, toLanguage);
         return new Dish(0, dishNameTranslated, dishForm.getCost(), dishForm.getCurrency());
     }

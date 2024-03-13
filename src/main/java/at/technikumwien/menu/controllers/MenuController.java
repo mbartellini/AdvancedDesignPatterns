@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/menues")
@@ -25,8 +26,8 @@ public class MenuController {
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	@TimeLimiter(name = "translationTimeout")
-	public int createMenu(@RequestBody MenuForm menuForm) throws Exception {
-		return menuService.createMenu(menuForm).getId();
+	public CompletableFuture<Integer> createMenu(@RequestBody MenuForm menuForm) throws Exception {
+		return CompletableFuture.supplyAsync(() -> menuService.createMenu(menuForm).getId());
 	}
 
 	@GetMapping("/{id}")
@@ -36,7 +37,8 @@ public class MenuController {
 
 	@GetMapping("/{id}/images")
 	@CircuitBreaker(name = "FetchExternalImages")
-	public String[] getImagesForDishes(@PathVariable Integer id) {
-		return externalAPICaller.getImages();
+	@TimeLimiter(name = "imageTimeout")
+	public CompletableFuture<String[]> getImagesForDishes(@PathVariable Integer id) {
+		return CompletableFuture.supplyAsync(() -> externalAPICaller.getImages());
 	}
 }
