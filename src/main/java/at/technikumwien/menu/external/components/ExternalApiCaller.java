@@ -1,26 +1,32 @@
 package at.technikumwien.menu.external.components;
 
+import at.technikumwien.menu.forms.ImageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-import java.util.Objects;
 
 @Component
 public class ExternalApiCaller {
+
     private final RestTemplate restTemplate;
+
 
     @Autowired
     public ExternalApiCaller(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    public String callApi() {
-        return restTemplate.getForObject("/api/google_translate", String.class);
-    }
+    public static final String EXTERNAL_QUERY = "/images/biryani/";
+    public static final String EXTERNAL_SERVICE_URL = "http://localhost:9090" + EXTERNAL_QUERY;
 
-    public String[] getImages() {
-        return restTemplate.getForObject("/api/google_images", String[].class);
+    public ResponseEntity<ImageResponse> getImages() {
+
+        ResponseEntity<ImageResponse> response = restTemplate.getForEntity(EXTERNAL_SERVICE_URL, ImageResponse.class);
+
+
+        return response;
     }
 }
+
