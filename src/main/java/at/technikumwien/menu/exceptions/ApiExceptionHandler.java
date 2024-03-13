@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.util.logging.Logger;
-
 @ControllerAdvice
 public class ApiExceptionHandler {
 
@@ -15,5 +13,11 @@ public class ApiExceptionHandler {
     @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
     public void handleCallNotPermittedException() {
         System.out.println("HttpStatus.SERVICE_UNAVAILABLE");
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public void handleGenericException(Exception ex) {
+        System.out.println("handleGenericException: " + ex.getMessage());
     }
 }
