@@ -23,4 +23,9 @@ public class MenuForm {
         return preferredLanguage;
     }
 
+    public MenuForm(List<DishForm> dishes, String originalLanguage, String preferredLanguage) {
+        this.dishes = dishes;
+        this.originalLanguage = originalLanguage;
+        this.preferredLanguage = preferredLanguage;
+    }
 }

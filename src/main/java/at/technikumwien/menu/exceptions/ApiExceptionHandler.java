@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.concurrent.TimeoutException;
+
 @ControllerAdvice
 public class ApiExceptionHandler {
 
@@ -19,5 +21,11 @@ public class ApiExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public void handleGenericException(Exception ex) {
         System.out.println("handleGenericException: " + ex.getMessage());
+    }
+
+    @ExceptionHandler({TimeoutException.class})
+    @ResponseStatus(HttpStatus.REQUEST_TIMEOUT)
+    public void handleTimeoutException() {
+        System.out.println("HttpStatus.REQUEST_TIMEOUT");
     }
 }

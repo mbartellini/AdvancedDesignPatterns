@@ -25,8 +25,11 @@ public class MenuController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @TimeLimiter(name = "translationTimeout")
-    public CompletableFuture<Integer> createMenu(@RequestBody MenuForm menuForm) throws Exception {
-        return CompletableFuture.supplyAsync(() -> menuService.createMenu(menuForm).getId());
+    public CompletableFuture<Integer> createMenu(@RequestBody MenuForm menuForm) {
+        return CompletableFuture.supplyAsync(() -> {
+            String tranlsation = externalAPICaller.getExternalTranslation();
+            return menuService.createMenu(menuForm).getId();
+        });
     }
 
     @GetMapping("/{id}")

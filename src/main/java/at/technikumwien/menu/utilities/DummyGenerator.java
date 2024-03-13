@@ -1,6 +1,7 @@
 package at.technikumwien.menu.utilities;
 
 import at.technikumwien.menu.builders.MenuBuilder;
+import at.technikumwien.menu.forms.DishForm;
 import at.technikumwien.menu.objects.Dish;
 import at.technikumwien.menu.objects.Menu;
 
@@ -19,6 +20,22 @@ public class DummyGenerator {
                 String.format("Dish_%d", i),
                 cost,
         "USD"
+            );
+            dishes.add(dish);
+        }
+        return dishes;
+    }
+
+
+    public List<DishForm> generateDishForm(int amount) {
+        List<DishForm> dishes = new ArrayList<>();
+        Random random = new Random();
+        for(int i = 0; i < amount; i++) {
+            double cost = random.nextDouble(16) +  5;
+            DishForm dish = new DishForm(
+                    String.format("Dish_%d", i),
+                    cost,
+                    "USD"
             );
             dishes.add(dish);
         }
