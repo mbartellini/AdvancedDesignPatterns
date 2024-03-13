@@ -1,6 +1,7 @@
 package at.technikumwien.menu.exceptions;
 
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,10 +18,16 @@ public class ApiExceptionHandler {
         System.out.println("HttpStatus.SERVICE_UNAVAILABLE");
     }
 
+    @ExceptionHandler(RequestNotPermitted.class)
+    @ResponseStatus(HttpStatus.TOO_MANY_REQUESTS)
+    public void handleRequestNotPermitted() {
+
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public void handleGenericException(Exception ex) {
-        System.out.println("handleGenericException: " + ex.getMessage());
+        System.out.println("handleGenericException: " + ex.getClass().getName() + " " + ex.getMessage());
     }
 
     @ExceptionHandler({TimeoutException.class})
