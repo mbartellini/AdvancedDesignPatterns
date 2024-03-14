@@ -68,4 +68,23 @@ public class ResilientAppControllerUnitTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.REQUEST_TIMEOUT);
         EXTERNAL_SERVICE.verify(1, postRequestedFor(urlEqualTo(ExternalApiCaller.EXTERNAL_TRANSLATION_QUERY)));
     }
+
+    @Test
+    public void testRateLimiter() {
+        // Prepare extern translation fetching
+        EXTERNAL_SERVICE.stubFor(WireMock.post(ExternalApiCaller.EXTERNAL_TRANSLATION_QUERY).willReturn(ok("Translated")));
+
+        //Create Request
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        var dishForms = dummyGenerator.generateDishForm(3);
+        MenuForm menuForm = new MenuForm(dishForms, "Eng", "Ger");
+        HttpEntity<MenuForm> request = new HttpEntity<>(menuForm, headers);
+
+
+        restTemplate.postForEntity("/menues", request, Menu.class);
+        ResponseEntity<Menu> response = restTemplate.postForEntity("/menues", request, Menu.class);
+
+        assertThat(response.getStatusCode().isSameCodeAs(HttpStatus.TOO_MANY_REQUESTS));
+    }
 }
