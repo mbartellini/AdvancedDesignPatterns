@@ -3,11 +3,6 @@ Juan Martin Barmasch <br>
 Mateo Bartellini Huapala  <br>
 Balint Taschner-Berenguer  <br>
 
-# Recilience
-We have used TimeLimiter, RateLimiter, and CircuitBreaker for imagening senarios, if a request to create a menu takes too long or gets called too often.
-The Rate limit would make that one menu can be created in a minute, this was set to extreme in this senario in order to test resilience.
-
-
 # Setup
 This project runs with a spring boot plugin for maven. First of all, an `application.properties` file is needed inside the resources directory. This should have an `authKey` property with an appropriate DeepL API key. Then, the project can be run with `./mvnw spring-boot:run` or with the according plugin in your IDE.
 The API exposes 2 endpoints:
@@ -26,9 +21,10 @@ This application addresses the challenge of managing a restaurant where support 
 
 ![Software Architecture](./MenuHandlerArchitecture.png)
 
-# Resilience
 
+# Resilience
 The resilience patterns we chose were mainly focused on the handling of external APIs. We cannot guarantee their successful usage and we don't want to be overcharged for their usage. Therefore, we implemented the CircuitBreaker, Timeout and RateLimiter patterns, through the `resilience4j` library.
+These are used for image creation scenarios, if a request to create a menu takes too long or gets called too often.
 
 ## Timeout
 We need the external API for translating our dishes' names. But we cannot hang our client indefinitely until we get a response. So we implement a Timeout in order to remove hanging periods for our clients. This could be further accompanied with a Retry pattern.
