@@ -32,7 +32,7 @@ We need the external API for translating our dishes' names. But we cannot hang o
 We use an external API with our own API key. We have a set amount of calls before they charge us. And we also expect a restaurant to create menues in a slow manner. So we implement a Rate limiter in order to limit the number of external API calls our users can trigger, and hopefully save us some money.
 
 ## Circuit Breaker
-As we depend on an external API, we want to handle possible errors in an orderly fashion. That's where the circuit breaker pattern comes through.
+As we depend on an external API, we want to handle unavailability errors in an orderly fashion. That's where the circuit breaker pattern comes through.
 
 # Reflection
 The Builder pattern sounded more promising than it is actually in use at the moment, for it to become more useful we would need more attribute possibilities or types, for example by dividing food menus vs drink menus, then the Builder design pattern would be more useful. It would help with the maintainability of the code, as it provides a clean way of adding new attributes to the class without a need of changing a commonly used unique constructor.
