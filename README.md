@@ -21,9 +21,10 @@ This application addresses the challenge of managing a restaurant where support 
 
 ![Software Architecture](./MenuHandlerArchitecture.png)
 
-# Resilience
 
+# Resilience
 The resilience patterns we chose were mainly focused on the handling of external APIs. We cannot guarantee their successful usage and we don't want to be overcharged for their usage. Therefore, we implemented the CircuitBreaker, Timeout and RateLimiter patterns, through the `resilience4j` library.
+These are used for image creation scenarios, if a request to create a menu takes too long or gets called too often.
 
 ## Timeout
 We need the external API for translating our dishes' names. But we cannot hang our client indefinitely until we get a response. So we implement a Timeout in order to remove hanging periods for our clients. This could be further accompanied with a Retry pattern.
