@@ -17,4 +17,10 @@ public class DishForm {
     public String getCurrency() {
         return currency;
     }
+
+    public DishForm(String name, double cost, String currency) {
+        this.name =  name;
+        this.cost =  cost;
+        this.currency =  currency;
+    }
 }

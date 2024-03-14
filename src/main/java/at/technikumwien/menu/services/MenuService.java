@@ -15,16 +15,24 @@ import java.util.stream.Collectors;
 @Service
 public class MenuService {
 
+    private static boolean timeout = false;
+
     @Autowired
     private MenuRepository menuRepository;
     @Autowired
     private CustomTranslator translator;
 
-    private MenuService(){
-
+    private MenuService() {
     }
 
     public Menu createMenu(MenuForm menuForm) {
+        if (timeout) {
+            try {
+                Thread.sleep(15000);
+            } catch (InterruptedException ignore) {
+            }
+        }
+        timeout = !timeout;
         List<Dish> newDishes = menuForm
                 .getDishes()
                 .stream()

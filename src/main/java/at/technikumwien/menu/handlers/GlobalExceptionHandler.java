@@ -12,9 +12,11 @@ public class GlobalExceptionHandler {
     public GlobalExceptionHandler() {
         MenuExceptionHandler first = IndexOutOfBoundsExceptionHandler.getInstance();
         MenuExceptionHandler second =UnableToTranslateExceptionHandler.getInstance();
-        MenuExceptionHandler last = BasicExceptionHandler.getInstance();
+        TimeoutExceptionHandler third = TimeoutExceptionHandler.getInstance();
+        MenuExceptionHandler fourth = BasicExceptionHandler.getInstance();
         first.setSuccessor(second);
-        second.setSuccessor(last);
+        second.setSuccessor(third);
+        third.setSuccessor(fourth);
         chainOfResponsibility = first;
     }
 
